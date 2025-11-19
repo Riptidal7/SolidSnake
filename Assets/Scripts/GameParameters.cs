@@ -2,5 +2,5 @@ using UnityEngine;
 
 public static class GameParameters
 {
-    public static float SnakeMoveSpeed = 7f;
+    public static float SnakeMoveSpeed = 5f;
 }
