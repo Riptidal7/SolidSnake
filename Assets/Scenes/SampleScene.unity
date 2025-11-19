@@ -397,6 +397,7 @@ GameObject:
   - component: {fileID: 570542381}
   - component: {fileID: 570542383}
   - component: {fileID: 570542384}
+  - component: {fileID: 570542385}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -548,8 +549,8 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
+  m_CollisionDetection: 1
+  m_Constraints: 4
 --- !u!114 &570542383
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -590,9 +591,9 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 570542383}
-        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
-        m_MethodName: Move
+      - m_Target: {fileID: 570542385}
+        m_TargetAssemblyTypeName: CommandInvoker, Assembly-CSharp
+        m_MethodName: OnMove
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -649,6 +650,18 @@ MonoBehaviour:
   m_DefaultActionMap: 
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &570542385
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 570542376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5954179df52b6491989510a4a8c097a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CommandInvoker
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
