@@ -4,7 +4,6 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] private SpriteRenderer SnakeSpriteRenderer;
     private Rigidbody2D rb;
     private Vector2 currentDirection = Vector2.right;
 
@@ -28,13 +27,6 @@ public class PlayerMovement : MonoBehaviour
     
     private void FixedUpdate()
     {
-        rb.MovePosition(rb.position + currentDirection * GameParameters.SnakeMoveSpeed * Time.fixedDeltaTime);
-        KeepOnScreen();
-    }
-    
-    private void KeepOnScreen()
-    {
-        SnakeSpriteRenderer.transform.position =
-            SpriteTools.ConstrainToScreen(SnakeSpriteRenderer);
+        rb.MovePosition(rb.position + currentDirection * (GameParameters.SnakeMoveSpeed * Time.fixedDeltaTime));
     }
 }
