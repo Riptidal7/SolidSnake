@@ -464,8 +464,9 @@ GameObject:
   - component: {fileID: 570542383}
   - component: {fileID: 570542384}
   - component: {fileID: 570542385}
+  - component: {fileID: 570542386}
   m_Layer: 0
-  m_Name: Player
+  m_Name: Snake
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -727,6 +728,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5954179df52b6491989510a4a8c097a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CommandInvoker
+--- !u!114 &570542386
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 570542376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b54948500ad584f3a945255aa35b72d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BoxTailManager
+  TailBoxes: []
 --- !u!1 &611845178
 GameObject:
   m_ObjectHideFlags: 0
