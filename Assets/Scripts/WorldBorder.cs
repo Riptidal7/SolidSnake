@@ -10,14 +10,11 @@ public class WorldBorder : MonoBehaviour
         Collider = GetComponent<Collider2D>();
     }
 
-    private void OnTriggerExit2D(Collider2D other)
+    private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.CompareTag("Player"))
+        GameEvents.OnBorderHit?.Invoke(new GameEvents.OnBorderHitArgs
         {
-            GameEvents.OnBorderHit?.Invoke(new GameEvents.OnBorderHitArgs
-            {
-                inBorder = false
-            });
-        }
+            inBorder = false
+        });
     }
 }
