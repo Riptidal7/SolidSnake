@@ -2,48 +2,36 @@ using UnityEngine;
 
 public class BoxCollectible : MonoBehaviour
 {
-    public GameObject TailBox;
-    public Transform SnakeHead;
+    public BoxCollider2D GridArea;
+    public Grid grid;
     
-    private Collider2D Collider;
+    
     void Start()
     {
-        Collider = GetComponent<Collider2D>();
+        RandomizePosition();
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
+    void OnTriggerEnter2D(Collider2D other)
     {
-        AddBoxToSnake(collision);
-        Destroy(gameObject);
+        if (other.CompareTag("Player"))
+            RandomizePosition();
     }
 
-    private void AddBoxToSnake(Collision2D collision)
+    private void RandomizePosition()
     {
-        BoxTailManager tail = SnakeHead.GetComponent<BoxTailManager>();
-
-        if (tail == null)
-        {
-            Debug.LogError("No BoxTailManager found in SnakeHead parent!");
-            return;
-        }
-
-        Vector3 spawnPosition;
-
-        if (tail.TailBoxes.Count == 0)
-        {
-            spawnPosition = SnakeHead.position - SnakeHead.right * GameParameters.TailSegmentSeparation;
-        }
-        else
-        {
-            Transform lastSegment = tail.TailBoxes[tail.TailBoxes.Count - 1];
-            spawnPosition = lastSegment.position;
-        }
+        Bounds bounds = GridArea.bounds;
         
-        GameObject newTail = Instantiate(TailBox, spawnPosition, Quaternion.identity);
-        newTail.transform.SetParent(SnakeHead);
-
-        tail.TailBoxes.Add(newTail.transform);
+        float x = Random.Range(bounds.min.x, bounds.max.x);
+        float y = Random.Range(bounds.min.y, bounds.max.y);
+        Vector3 randomWorldPos = new Vector3(x, y);
+        
+        Vector3Int cell = grid.WorldToCell(randomWorldPos);
+        
+        Vector3 snappedPos = grid.GetCellCenterWorld(cell);
+        
+        transform.position = snappedPos;
     }
+    
 
     
 }

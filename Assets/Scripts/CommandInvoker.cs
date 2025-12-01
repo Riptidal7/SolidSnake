@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 public class CommandInvoker : MonoBehaviour
 {
     private PlayerMovement playerMovement;
+    private Grid grid;
     
     void Awake()
     {
