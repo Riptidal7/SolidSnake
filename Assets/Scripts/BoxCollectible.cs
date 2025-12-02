@@ -14,7 +14,10 @@ public class BoxCollectible : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
+        {
             RandomizePosition();
+            GameEvents.OnBoxCollected?.Invoke();
+        }
     }
 
     private void RandomizePosition()

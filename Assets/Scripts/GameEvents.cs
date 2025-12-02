@@ -16,4 +16,6 @@ public static class GameEvents
     {
         public bool inTail;
     }
+    
+    public static Action OnBoxCollected;
 }
