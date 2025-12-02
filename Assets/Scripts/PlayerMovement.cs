@@ -19,13 +19,21 @@ public class PlayerMovement : MonoBehaviour
     public void Move(InputAction.CallbackContext context)
     {
         Vector2 input = context.ReadValue<Vector2>();
+
+        Vector2Int newDirection = Vector2Int.zero;
+        
         if (!context.performed)
             return;
         
         if (Mathf.Abs(input.x) > 0.1f)
-            currentDirection = new Vector2Int((int)Mathf.Sign(input.x), 0);
+            newDirection = new Vector2Int((int)Mathf.Sign(input.x), 0);
         else if (Mathf.Abs(input.y) > 0.1f)
-            currentDirection = new Vector2Int(0, (int)Mathf.Sign(input.y));
+            newDirection = new Vector2Int(0, (int)Mathf.Sign(input.y));
+        
+        if (newDirection == -currentDirection)
+            return;
+        
+        currentDirection = newDirection;
     }
     
     private void Update()

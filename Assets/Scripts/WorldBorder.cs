@@ -10,7 +10,7 @@ public class WorldBorder : MonoBehaviour
         Collider = GetComponent<Collider2D>();
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         GameEvents.OnBorderHit?.Invoke(new GameEvents.OnBorderHitArgs
         {

@@ -25,8 +25,7 @@ public class BoxTailManager : MonoBehaviour
         {
             lastHeadCell = headCell;
             positionHistory.Insert(0, headCell);
-
-            // Move tail segments
+            
             for (int i = 1; i < TailBoxes.Count; i++)
             {
                 int index = i * GameParameters.GapDistance;
@@ -45,15 +44,23 @@ public class BoxTailManager : MonoBehaviour
     private void Grow()
     {
         Transform newSegment = Instantiate(TailBoxPrefab);
-        Vector3Int lastCell = grid.WorldToCell(TailBoxes[TailBoxes.Count - 1].position);
-        newSegment.position = grid.GetCellCenterWorld(lastCell);
+        
+        newSegment.position = new Vector3(9999f, 9999f, 0f);
 
         TailBoxes.Add(newSegment);
     }
+    
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Collectible"))
             Grow();
+        if (other.CompareTag("Tail"))
+        {
+            GameEvents.OnTailHit?.Invoke(new GameEvents.OnTailHitArgs
+            {
+                inTail = true
+            });
+        }
     }
 }

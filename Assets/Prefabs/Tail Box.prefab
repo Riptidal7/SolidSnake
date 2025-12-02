@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7120271971721380989}
   m_Layer: 0
   m_Name: Tail Box
-  m_TagString: Untagged
+  m_TagString: Tail
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
