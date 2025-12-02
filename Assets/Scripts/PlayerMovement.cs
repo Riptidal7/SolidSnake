@@ -4,29 +4,54 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-    private Rigidbody2D rb;
-    private Vector2 currentDirection = Vector2.right;
+    public Grid grid;
+    
+    private Vector3Int gridPosition;
+    private Vector2Int currentDirection = Vector2Int.right;
+
+    private float moveTimer;
 
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
+        gridPosition = grid.WorldToCell(transform.position);
     }
 
     public void Move(InputAction.CallbackContext context)
     {
         Vector2 input = context.ReadValue<Vector2>();
+
+        Vector2Int newDirection = Vector2Int.zero;
+        
         if (!context.performed)
             return;
         
-        // Prevent diagonal movement (snake usually moves 4 directions)
         if (Mathf.Abs(input.x) > 0.1f)
-            currentDirection = new Vector2(Mathf.Sign(input.x), 0f);
+            newDirection = new Vector2Int((int)Mathf.Sign(input.x), 0);
         else if (Mathf.Abs(input.y) > 0.1f)
-            currentDirection = new Vector2(0f, Mathf.Sign(input.y));
+            newDirection = new Vector2Int(0, (int)Mathf.Sign(input.y));
+        
+        if (newDirection == -currentDirection)
+            return;
+        
+        currentDirection = newDirection;
     }
     
-    private void FixedUpdate()
+    private void Update()
     {
-        rb.MovePosition(rb.position + currentDirection * (GameParameters.SnakeMoveSpeed * Time.fixedDeltaTime));
+        moveTimer += Time.deltaTime;
+        if (moveTimer >= GameParameters.SnakeMoveInterval)
+        {
+            moveTimer = 0f;
+            Step();
+        }
+    }
+
+    private void Step()
+    {
+        gridPosition += new Vector3Int(currentDirection.x, currentDirection.y, 0);
+        
+        Vector3 worldPos = grid.GetCellCenterWorld(gridPosition);
+        
+        transform.position = worldPos;
     }
 }

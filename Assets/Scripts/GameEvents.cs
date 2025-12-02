@@ -9,4 +9,11 @@ public static class GameEvents
     {
         public bool inBorder;
     }
+    
+    public static Action<OnTailHitArgs> OnTailHit;
+
+    public struct OnTailHitArgs
+    {
+        public bool inTail;
+    }
 }
