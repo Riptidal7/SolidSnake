@@ -57,10 +57,7 @@ public class BoxTailManager : MonoBehaviour
             Grow();
         if (other.CompareTag("Tail"))
         {
-            GameEvents.OnTailHit?.Invoke(new GameEvents.OnTailHitArgs
-            {
-                inTail = true
-            });
+            GameEvents.OnTailHit?.Invoke();
         }
     }
 }

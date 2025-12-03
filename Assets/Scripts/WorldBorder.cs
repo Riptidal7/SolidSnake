@@ -12,9 +12,6 @@ public class WorldBorder : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        GameEvents.OnBorderHit?.Invoke(new GameEvents.OnBorderHitArgs
-        {
-            inBorder = false
-        });
+        GameEvents.OnBorderHit?.Invoke();
     }
 }

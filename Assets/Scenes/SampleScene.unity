@@ -6623,6 +6623,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 293af9b6595a240caa1618d7c5a26c58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
+  scoreKeeper: {fileID: 21306255}
+  score: 0
 --- !u!4 &1670180998
 Transform:
   m_ObjectHideFlags: 0

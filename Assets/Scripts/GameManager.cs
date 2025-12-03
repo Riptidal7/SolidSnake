@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-
     public void Awake()
     {
         Subscribe();
@@ -15,24 +14,20 @@ public class GameManager : MonoBehaviour
         GameEvents.OnTailHit += OnTailHit;
     }
     
-    public void OnBorderHit(GameEvents.OnBorderHitArgs obj)
+    public void OnBorderHit()
     {
-        if (!obj.inBorder)
-        {
-            LoseGame();
-        }
+        LoseGame();
     }
 
-    public void OnTailHit(GameEvents.OnTailHitArgs obj)
+    public void OnTailHit()
     {
-        if (obj.inTail)
-        {
-            LoseGame();
-        }
+        LoseGame();
     }
 
     public void LoseGame()
     {
-        print("LoseGame");
+        Debug.Log("LoseGame");
+        Debug.Log("Score: " + PlayerPrefs.GetInt("HighScore"));
     }
+    
 }

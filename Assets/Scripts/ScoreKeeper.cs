@@ -21,5 +21,14 @@ public class ScoreKeeper : MonoBehaviour
     {
         score++;
         scoreText.text = score.ToString("D3");
+        SaveHighScore();
+    }
+    
+    public void SaveHighScore()
+    {
+        if (score > PlayerPrefs.GetInt("HighScore"))
+        {
+            PlayerPrefs.SetInt("HighScore", score);
+        }
     }
 }
