@@ -15,6 +15,10 @@ public class BoxTailManager : MonoBehaviour
         TailBoxes = new List<Transform>();
         positionHistory = new List<Vector3Int>();
         TailBoxes.Add(transform);
+        
+        Vector3Int startCell = grid.WorldToCell(transform.position);
+        GridChecker.Add(startCell);
+        lastHeadCell = startCell;
     }
 
     private void FixedUpdate()
@@ -23,6 +27,10 @@ public class BoxTailManager : MonoBehaviour
 
         if (headCell != lastHeadCell)
         {
+            GridChecker.Remove(lastHeadCell);
+            
+            GridChecker.Add(headCell);
+
             lastHeadCell = headCell;
             positionHistory.Insert(0, headCell);
             
@@ -31,14 +39,22 @@ public class BoxTailManager : MonoBehaviour
                 int index = i * GameParameters.GapDistance;
                 if (index < positionHistory.Count)
                 {
-                    Vector3 worldPos = grid.GetCellCenterWorld(positionHistory[index]);
+                    Vector3Int cell = positionHistory[index];
+                    Vector3 worldPos = grid.GetCellCenterWorld(cell);
+                    
+                    Vector3Int oldCell = grid.WorldToCell(TailBoxes[i].position);
+                    GridChecker.Remove(oldCell);
+                    
                     TailBoxes[i].position = worldPos;
+                    
+                    GridChecker.Add(cell);
                 }
             }
         }
-
+        
         if (positionHistory.Count > 10000)
             positionHistory.RemoveRange(10000, positionHistory.Count - 10000);
+
     }
 
     private void Grow()
