@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public GameStates GameStates;
     public void Awake()
     {
         Subscribe();
@@ -26,8 +27,17 @@ public class GameManager : MonoBehaviour
 
     public void LoseGame()
     {
-        Debug.Log("LoseGame");
-        Debug.Log("Score: " + PlayerPrefs.GetInt("HighScore"));
+        GoToResults();
+    }
+
+    public void GoToGame()
+    {
+        GameStates.ChangeState(GameStates.State.Game);
+    }
+
+    public void GoToResults()
+    {
+        GameStates.ChangeState(GameStates.State.Results);
     }
     
 }

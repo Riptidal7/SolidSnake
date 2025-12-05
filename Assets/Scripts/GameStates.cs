@@ -20,16 +20,24 @@ public class GameStates : MonoBehaviour
         switch (newState)
         {
             case State.Start:
-                //make start screen visible here
-                //ensure no other screens visible
+                MainMenu.SetActive(true);
+                GameUI.SetActive(false);
+                Results.SetActive(false);
+                CollectibleBox.SetActive(false);
+                Player.SetActive(false);
                 break;
             case State.Game:
-                //make game screen visible
+                MainMenu.SetActive(false);
+                Results.SetActive(false);
+                CollectibleBox.SetActive(true);
+                Player.SetActive(false);
+                GameUI.SetActive(true);
                 break;
             case State.Results:
-                //stop game timer/ other mechanics
-                //turn on results screen
-                //turn off game screen
+                GameUI.SetActive(false);
+                Player.SetActive(false);
+                CollectibleBox.SetActive(false);
+                Results.SetActive(true);
                 break;
         }
     }
