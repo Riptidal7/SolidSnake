@@ -1,38 +1,63 @@
 using System;
+using TMPro;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-
-    public void Awake()
-    {
-        Subscribe();
-    }
+    public GameStates GameStates;
+    public GameObject Player;
+    public BoxTailManager BoxTailManager;
     
     public void Subscribe()
     {
         GameEvents.OnBorderHit += OnBorderHit;
         GameEvents.OnTailHit += OnTailHit;
     }
-    
-    public void OnBorderHit(GameEvents.OnBorderHitArgs obj)
+
+    public void Unsubscribe()
     {
-        if (!obj.inBorder)
-        {
-            LoseGame();
-        }
+        GameEvents.OnBorderHit -= OnBorderHit;
+        GameEvents.OnTailHit -= OnTailHit;
+    }
+    
+    public void OnBorderHit()
+    {
+        Debug.Log("OnBorderHit");
+        LoseGame();
     }
 
-    public void OnTailHit(GameEvents.OnTailHitArgs obj)
+    public void OnTailHit()
     {
-        if (obj.inTail)
-        {
-            LoseGame();
-        }
+        Debug.Log("OnTailHit");
+        LoseGame();
     }
 
     public void LoseGame()
     {
-        print("LoseGame");
+        GoToResults();
     }
+
+    public void GoToGame()
+    {
+        Unsubscribe();
+        ResetGame();
+        GameStates.ChangeState(GameStates.State.Game);
+        Subscribe();
+    }
+
+    public void GoToResults()
+    {
+        Unsubscribe();
+        GameStates.ChangeState(GameStates.State.Results);
+    }
+
+    public void ResetGame()
+    {
+        var movement = Player.GetComponent<PlayerMovement>();
+        movement.ResetMovement();
+        Player.transform.position = new Vector3(0, 0, 0);
+        BoxTailManager.ResetSnake();
+    }
+    
+    
 }
