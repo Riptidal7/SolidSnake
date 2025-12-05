@@ -6,7 +6,7 @@ public class BoxCollectible : MonoBehaviour
     public Grid grid;
     
     
-    void Start()
+    void Awake()
     {
         RandomizePosition();
     }
