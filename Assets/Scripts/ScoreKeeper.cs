@@ -16,36 +16,13 @@ public class ScoreKeeper : MonoBehaviour
     public void Subscribe()
     {
         GameEvents.OnBoxCollected += OnBoxCollected;
-        GameEvents.OnBorderHit += OnBorderHit;
-        GameEvents.OnTailHit += OnTailHit;
-    }
-
-    
-
-    public void Unsubscribe()
-    {
-        GameEvents.OnBoxCollected -= OnBoxCollected;
-        GameEvents.OnBorderHit -= OnBorderHit;
-        GameEvents.OnTailHit -= OnTailHit;
     }
 
     public void OnBoxCollected()
     {
         score++;
-        scoreText.text = score.ToString("D3");
+        UpdateScoreText();
         SaveHighScore();
-    }
-    
-    public void OnBorderHit()
-    {
-        score = 0;
-        scoreText.text = score.ToString("D3");
-    }
-
-    public void OnTailHit()
-    {
-        score = 0;
-        scoreText.text = score.ToString("D3");
     }
     
     
@@ -56,5 +33,10 @@ public class ScoreKeeper : MonoBehaviour
         {
             PlayerPrefs.SetInt("HighScore", score);
         }
+    }
+
+    public void UpdateScoreText()
+    {
+        scoreText.text = score.ToString("D3");
     }
 }
