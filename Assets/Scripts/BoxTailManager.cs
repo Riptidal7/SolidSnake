@@ -6,11 +6,11 @@ public class BoxTailManager : MonoBehaviour
     public Grid grid;
     public List<Transform> TailBoxes;
     public Transform TailBoxPrefab;
-
-    private List<Vector3Int> positionHistory;
+    public List<Vector3Int> positionHistory;
+    
     private Vector3Int lastHeadCell;
 
-    private void Start()
+    private void Awake()
     {
         TailBoxes = new List<Transform>();
         positionHistory = new List<Vector3Int>();
@@ -76,4 +76,26 @@ public class BoxTailManager : MonoBehaviour
             GameEvents.OnTailHit?.Invoke();
         }
     }
+    
+    public void ResetSnake()
+    {
+        // Reset grid
+        GridChecker.ClearAll();
+
+        // Destroy all tail except head
+        for (int i = 1; i < TailBoxes.Count; i++)
+            Destroy(TailBoxes[i].gameObject);
+
+        TailBoxes.Clear();
+        TailBoxes.Add(transform);
+
+        // Clear position history
+        positionHistory.Clear();
+
+        // Reset head position
+        Vector3Int startCell = grid.WorldToCell(transform.position);
+        lastHeadCell = startCell;
+        GridChecker.Add(startCell);
+    }
+
 }

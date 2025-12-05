@@ -54,4 +54,15 @@ public class PlayerMovement : MonoBehaviour
         
         transform.position = worldPos;
     }
+    
+    public void ResetMovement()
+    {
+        gridPosition = grid.WorldToCell(Vector3.zero);
+        
+        transform.position = grid.GetCellCenterWorld(gridPosition);
+        
+        currentDirection = Vector2Int.right;
+        
+        moveTimer = 0f;
+    }
 }

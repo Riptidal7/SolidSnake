@@ -30,7 +30,7 @@ public class GameStates : MonoBehaviour
                 MainMenu.SetActive(false);
                 Results.SetActive(false);
                 CollectibleBox.SetActive(true);
-                Player.SetActive(false);
+                Player.SetActive(true);
                 GameUI.SetActive(true);
                 break;
             case State.Results:

@@ -732,7 +732,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 354765402}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1670180997}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: GoToGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &354765402
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6629,6 +6641,7 @@ MonoBehaviour:
   grid: {fileID: 540610098}
   TailBoxes: []
   TailBoxPrefab: {fileID: 4229055333201465043, guid: e5978d0a95a3b4cab9aa724ec9219eb5, type: 3}
+  positionHistory: []
 --- !u!1 &611845178
 GameObject:
   m_ObjectHideFlags: 0
@@ -7662,7 +7675,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1352245172}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1670180997}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: GoToGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1352245172
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7990,6 +8015,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   GameStates: {fileID: 649049448}
+  Player: {fileID: 570542376}
+  BoxTailManager: {fileID: 570542386}
+  ScoreText: {fileID: 108723991}
 --- !u!4 &1670180998
 Transform:
   m_ObjectHideFlags: 0

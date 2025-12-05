@@ -19,4 +19,9 @@ public class GridChecker : MonoBehaviour
     {
         occupiedCells.Remove(cell);
     }
+
+    public static void ClearAll()
+    {
+        occupiedCells.Clear();
+    }
 }

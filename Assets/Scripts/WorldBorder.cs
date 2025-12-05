@@ -12,6 +12,7 @@ public class WorldBorder : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        Debug.Log("Border Triggered by: " + other.name + " at " + other.transform.position);
         GameEvents.OnBorderHit?.Invoke();
     }
 }
