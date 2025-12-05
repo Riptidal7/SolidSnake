@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     public GameStates GameStates;
     public GameObject Player;
     public BoxTailManager BoxTailManager;
+    public ScoreDisplay ScoreDisplay;
     
     public void Subscribe()
     {
@@ -22,13 +23,13 @@ public class GameManager : MonoBehaviour
     
     public void OnBorderHit()
     {
-        Debug.Log("OnBorderHit");
+        ScoreDisplay.UpdateScoreResultsText();
         LoseGame();
     }
 
     public void OnTailHit()
     {
-        Debug.Log("OnTailHit");
+        ScoreDisplay.UpdateScoreResultsText();
         LoseGame();
     }
 
@@ -57,6 +58,15 @@ public class GameManager : MonoBehaviour
         movement.ResetMovement();
         Player.transform.position = new Vector3(0, 0, 0);
         BoxTailManager.ResetSnake();
+    }
+    
+    public void OnButtonClickQuit()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.ExitPlaymode(); // or: UnityEditor.EditorApplication.isPlaying = false;
+#else
+    Application.Quit(); // quits the built game
+#endif
     }
     
     

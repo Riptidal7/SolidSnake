@@ -7808,7 +7808,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1526222734}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1670180997}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: OnButtonClickQuit
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1526222734
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8017,7 +8029,7 @@ MonoBehaviour:
   GameStates: {fileID: 649049448}
   Player: {fileID: 570542376}
   BoxTailManager: {fileID: 570542386}
-  ScoreText: {fileID: 108723991}
+  ScoreDisplay: {fileID: 2050988934}
 --- !u!4 &1670180998
 Transform:
   m_ObjectHideFlags: 0
@@ -8757,6 +8769,7 @@ GameObject:
   - component: {fileID: 2050988931}
   - component: {fileID: 2050988933}
   - component: {fileID: 2050988932}
+  - component: {fileID: 2050988934}
   m_Layer: 5
   m_Name: Panel
   m_TagString: Untagged
@@ -8826,6 +8839,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2050988930}
   m_CullTransparentMesh: 1
+--- !u!114 &2050988934
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2050988930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ea4f85cf2c2c4cc4903116f649ddd73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ScoreDisplay
+  RoundScoreText: {fileID: 1800840351}
+  HighScoreText: {fileID: 662378717}
+  scoreKeeper: {fileID: 21306255}
 --- !u!1001 &4274802532420799277
 PrefabInstance:
   m_ObjectHideFlags: 0
