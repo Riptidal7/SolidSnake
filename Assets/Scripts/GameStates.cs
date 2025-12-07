@@ -11,6 +11,10 @@ public class GameStates : MonoBehaviour
     public GameObject Results;
     public GameObject Player;
     public GameObject CollectibleBox;
+    
+    public AudioClip MenuMusic;
+    public AudioClip GameMusic;
+    public AudioClip SnakeDeath;
 
     void Start() => ChangeState(State.Start);
 
@@ -20,25 +24,46 @@ public class GameStates : MonoBehaviour
         switch (newState)
         {
             case State.Start:
-                MainMenu.SetActive(true);
-                GameUI.SetActive(false);
-                Results.SetActive(false);
-                CollectibleBox.SetActive(false);
-                Player.SetActive(false);
+                StartScreen();
                 break;
             case State.Game:
-                MainMenu.SetActive(false);
-                Results.SetActive(false);
-                CollectibleBox.SetActive(true);
-                Player.SetActive(true);
-                GameUI.SetActive(true);
+                GameScreen();
                 break;
             case State.Results:
-                GameUI.SetActive(false);
-                Player.SetActive(false);
-                CollectibleBox.SetActive(false);
-                Results.SetActive(true);
+                ResultsScreen();
                 break;
         }
+    }
+
+    public void StartScreen()
+    {
+        AudioManager.Instance.StopMusic();
+        MainMenu.SetActive(true);
+        GameUI.SetActive(false);
+        Results.SetActive(false);
+        CollectibleBox.SetActive(false);
+        Player.SetActive(false);
+        AudioManager.Instance.PlayMenuMusic(MenuMusic);
+    }
+    
+    public void GameScreen()
+    {
+        AudioManager.Instance.StopMusic();
+        MainMenu.SetActive(false);
+        Results.SetActive(false);
+        CollectibleBox.SetActive(true);
+        Player.SetActive(true);
+        GameUI.SetActive(true);
+        AudioManager.Instance.PlayBackgroundMusic(GameMusic);
+    }
+
+    public void ResultsScreen()
+    {
+        AudioManager.Instance.StopMusic();
+        GameUI.SetActive(false);
+        Player.SetActive(false);
+        CollectibleBox.SetActive(false);
+        Results.SetActive(true);
+        AudioManager.Instance.PlaySnakeDyingSFX(SnakeDeath);
     }
 }
