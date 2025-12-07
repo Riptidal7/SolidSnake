@@ -4,9 +4,9 @@ public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance { get; private set; }
     
-    public AudioSource backgroundMusic;
-    public AudioSource playerSFXSource;
-    public AudioSource worldSFXSource;
+    public AudioSource backgroundMusicSource;
+    public AudioSource snakeDyingSource;
+    public AudioSource menuMusicSource;
 
     private void Awake()
     {
@@ -24,19 +24,26 @@ public class AudioManager : MonoBehaviour
 
     public void PlayBackgroundMusic(AudioClip clip)
     {
-        backgroundMusic.clip = clip;
-        backgroundMusic.Play();
+        backgroundMusicSource.clip = clip;
+        backgroundMusicSource.Play();
     }
 
-    public void PlayPlayerSFX(AudioClip clip)
+    public void PlaySnakeDyingSFX(AudioClip clip)
     {
-        playerSFXSource.clip = clip;
-        playerSFXSource.Play();
+        snakeDyingSource.clip = clip;
+        snakeDyingSource.Play();
     }
 
-    public void PlayWorldSFX(AudioClip clip)
+    public void PlayMenuMusic(AudioClip clip)
     {
-        worldSFXSource.clip = clip;
-        worldSFXSource.Play();
+        menuMusicSource.clip = clip;
+        menuMusicSource.Play();
+    }
+    
+    public void StopMusic()
+    {
+        backgroundMusicSource.Stop();
+        menuMusicSource.Stop();
+        snakeDyingSource.Stop();
     }
 }
