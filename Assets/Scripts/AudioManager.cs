@@ -5,7 +5,7 @@ public class AudioManager : MonoBehaviour
     public static AudioManager Instance { get; private set; }
     
     public AudioSource backgroundMusicSource;
-    public AudioSource snakeDyingSource;
+    public AudioSource gameEndSource;
     public AudioSource menuMusicSource;
 
     private void Awake()
@@ -28,10 +28,10 @@ public class AudioManager : MonoBehaviour
         backgroundMusicSource.Play();
     }
 
-    public void PlaySnakeDyingSFX(AudioClip clip)
+    public void PlayGameEndSFX(AudioClip clip)
     {
-        snakeDyingSource.clip = clip;
-        snakeDyingSource.Play();
+        gameEndSource.clip = clip;
+        gameEndSource.Play();
     }
 
     public void PlayMenuMusic(AudioClip clip)
@@ -44,6 +44,6 @@ public class AudioManager : MonoBehaviour
     {
         backgroundMusicSource.Stop();
         menuMusicSource.Stop();
-        snakeDyingSource.Stop();
+        gameEndSource.Stop();
     }
 }
