@@ -7,6 +7,7 @@ public class ExtractionZone : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             GameEvents.OnExtraction?.Invoke();
+            Destroy(this.gameObject);
         }
     }
 }
