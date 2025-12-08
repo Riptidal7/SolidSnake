@@ -22,7 +22,8 @@ public class ScoreKeeper : MonoBehaviour
     {
         score++;
         UpdateScoreText();
-        SaveHighScore();
+        if (score == 10)
+            GameEvents.On10BoxCollected?.Invoke();
     }
     
     

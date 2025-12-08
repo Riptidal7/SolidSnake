@@ -14,7 +14,6 @@ public class GameStates : MonoBehaviour
     
     public AudioClip MenuMusic;
     public AudioClip GameMusic;
-    public AudioClip SnakeDeath;
 
     void Start() => ChangeState(State.Start);
 
@@ -64,6 +63,5 @@ public class GameStates : MonoBehaviour
         Player.SetActive(false);
         CollectibleBox.SetActive(false);
         Results.SetActive(true);
-        AudioManager.Instance.PlaySnakeDyingSFX(SnakeDeath);
     }
 }
